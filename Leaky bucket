@@ -1,0 +1,40 @@
+#include<stdio.h>
+
+int main()
+{
+    int bucket=0,size,out,in,n,i;
+
+    printf("Enter bucket size: ");
+    scanf("%d",&size);
+
+    printf("Enter outgoing rate: ");
+    scanf("%d",&out);
+
+    printf("Enter number of packets: ");
+    scanf("%d",&n);
+
+    for(i=1;i<=n;i++)
+    {
+        printf("\nEnter packet %d size: ",i);
+        scanf("%d",&in);
+
+        if(bucket+in<=size)
+            bucket+=in;
+        else
+            printf("Packet Dropped: %d\n",
+            (bucket+in)-size);
+
+        printf("Bucket Status : %d/%d\n",
+        bucket,size);
+
+        bucket-=out;
+
+        if(bucket<0)
+            bucket=0;
+
+        printf("After Leak     : %d/%d\n",
+        bucket,size);
+    }
+
+    return 0;
+}
